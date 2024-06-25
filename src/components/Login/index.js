@@ -1,5 +1,16 @@
 import {Component} from 'react'
-import {Heading} from '../../styledComponents'
+import {
+  LoginBg,
+  LoginCard,
+  LoginLogo,
+  LoginForm,
+  InputLabel,
+  InputContainer,
+  InputField,
+  LoginButton,
+  LoginErrorMsg,
+  ShowPasswordLabel,
+} from '../../styledComponents'
 import ThemeContext from '../../context/ThemeContext'
 
 class Login extends Component {
@@ -21,16 +32,59 @@ class Login extends Component {
         {value => {
           const {darkTheme} = value
           return (
-            <div>
-              <Heading darkTheme={darkTheme}>Login Route</Heading>
-              <input type="checkbox" onChange={this.checkPassword} />
-              <input
-                type={showPassword ? 'text' : 'password'}
-                placeholder="Password"
-                value={password}
-                onChange={this.updatePassword}
-              />
-            </div>
+            <LoginBg darkTheme={darkTheme}>
+              <LoginCard darkTheme={darkTheme}>
+                <LoginLogo
+                  src={
+                    darkTheme
+                      ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
+                      : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
+                  }
+                  alt="logo"
+                />
+                <LoginForm darkTheme={darkTheme}>
+                  <InputContainer>
+                    <InputLabel darkTheme={darkTheme}>USERNAME</InputLabel>
+                    <InputField
+                      type="text"
+                      placeholder="Username"
+                      darkTheme={darkTheme}
+                    />
+                  </InputContainer>
+
+                  <InputContainer>
+                    <InputLabel darkTheme={darkTheme}>PASSWORD</InputLabel>
+                    <InputField
+                      darkTheme={darkTheme}
+                      type={showPassword ? 'text' : 'password'}
+                      placeholder="Password"
+                      value={password}
+                      onChange={this.updatePassword}
+                    />
+                  </InputContainer>
+
+                  <div>
+                    <input
+                      id="checkbox"
+                      type="checkbox"
+                      onChange={this.checkPassword}
+                      style={{
+                        height: '16px',
+                        width: '16px',
+                      }}
+                    />
+                    <ShowPasswordLabel htmlFor="checkbox" darkTheme={darkTheme}>
+                      Show Password
+                    </ShowPasswordLabel>
+                  </div>
+
+                  <LoginButton type="submit">Login</LoginButton>
+                  <LoginErrorMsg>
+                    *Username and Password didn't match
+                  </LoginErrorMsg>
+                </LoginForm>
+              </LoginCard>
+            </LoginBg>
           )
         }}
       </ThemeContext.Consumer>
