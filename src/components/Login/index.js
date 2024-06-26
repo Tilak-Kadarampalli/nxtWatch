@@ -1,4 +1,6 @@
 import {Component} from 'react'
+import Cookies from 'js-cookie'
+import {Redirect} from 'react-router-dom'
 import {
   LoginBg,
   LoginCard,
@@ -14,18 +16,72 @@ import {
 import ThemeContext from '../../context/ThemeContext'
 
 class Login extends Component {
-  state = {showPassword: false, password: ''}
+  state = {
+    showPassword: false,
+    username: '',
+    password: '',
+    errorMsg: '',
+    showErrorMsg: false,
+  }
 
   checkPassword = () => {
     this.setState(prevState => ({showPassword: !prevState.showPassword}))
+  }
+
+  updateUsername = event => {
+    this.setState({username: event.target.value})
   }
 
   updatePassword = event => {
     this.setState({password: event.target.value})
   }
 
+  submitForm = async event => {
+    event.preventDefault()
+
+    const {username, password} = this.state
+    const userDetails = {username, password}
+
+    const url = 'https://apis.ccbp.in/login'
+    const options = {method: 'POST', body: JSON.stringify(userDetails)}
+
+    const response = await fetch(url, options)
+    const data = await response.json()
+
+    if (response.ok === true) {
+      this.onSubmitSuccess(data.jwt_token)
+    } else {
+      this.onSubmitFailure(data.error_msg)
+    }
+  }
+
+  onSubmitSuccess = jwtToken => {
+    console.log(jwtToken)
+    this.setState({showErrorMsg: false})
+    Cookies.set('jwt_token', jwtToken, {expires: 30})
+
+    const {history} = this.props
+    history.replace('/')
+  }
+
+  onSubmitFailure = errorMsg => {
+    this.setState({showErrorMsg: true, errorMsg, username: '', password: ''})
+  }
+
   render() {
-    const {showPassword, password} = this.state
+    const {
+      showPassword,
+      password,
+      errorMsg,
+      showErrorMsg,
+      username,
+    } = this.state
+
+    const jwtToken = Cookies.get('jwt_token')
+
+    if (jwtToken !== undefined) {
+      return <Redirect to="/" />
+    }
 
     return (
       <ThemeContext.Consumer>
@@ -42,13 +98,15 @@ class Login extends Component {
                   }
                   alt="logo"
                 />
-                <LoginForm darkTheme={darkTheme}>
+                <LoginForm darkTheme={darkTheme} onSubmit={this.submitForm}>
                   <InputContainer>
                     <InputLabel darkTheme={darkTheme}>USERNAME</InputLabel>
                     <InputField
                       type="text"
                       placeholder="Username"
                       darkTheme={darkTheme}
+                      value={username}
+                      onChange={this.updateUsername}
                     />
                   </InputContainer>
 
@@ -79,9 +137,7 @@ class Login extends Component {
                   </div>
 
                   <LoginButton type="submit">Login</LoginButton>
-                  <LoginErrorMsg>
-                    *Username and Password didn't match
-                  </LoginErrorMsg>
+                  {showErrorMsg && <LoginErrorMsg>*{errorMsg}</LoginErrorMsg>}
                 </LoginForm>
               </LoginCard>
             </LoginBg>
