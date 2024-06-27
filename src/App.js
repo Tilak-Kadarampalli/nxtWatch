@@ -20,9 +20,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/login" component={Login} />
           <ProtectedRoute exact path="/" component={Home} />
-          <ProtectedRoute exact path="/" component={Home} />
         </Switch>
-        <Login />
       </ThemeContext.Provider>
     )
   }

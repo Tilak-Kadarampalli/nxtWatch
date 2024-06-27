@@ -73,3 +73,19 @@ export const LoginErrorMsg = styled.p`
   font-size: 12px;
   color: #ff0b37;
 `
+
+//  Header
+
+export const HeaderDiv = styled.div`
+  min-width: 100vw;
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+`
+export const HeaderLogo = styled.img`
+  margin-left: 10px;
+  height: 24px;
+`
