@@ -1,5 +1,11 @@
 import styled from 'styled-components'
 
+// Breakpoints
+const device = {
+  sm: `(max-width : 576px)`,
+  lg: `(max-width: 768px)`,
+}
+
 export const LoginBg = styled.div`
   min-width: 100vw;
   min-height: 100vh;
@@ -16,7 +22,6 @@ export const LoginCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   padding: 40px;
   width: 360px;
 `
@@ -78,7 +83,7 @@ export const LoginErrorMsg = styled.p`
 
 export const HeaderDiv = styled.div`
   min-width: 100vw;
-  background-color: aliceblue;
+  background-color: ${props => (props.darkTheme ? '#000000' : '#ffffff')};
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -88,4 +93,57 @@ export const HeaderDiv = styled.div`
 export const HeaderLogo = styled.img`
   margin-left: 10px;
   height: 24px;
+`
+
+export const HeaderMenu = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  @media screen and ${device.sm} {
+    display: none;
+  }
+`
+export const BurgerMenu = styled.button`
+  display: none;
+  @media screen and ${device.sm} {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    color: ${props => (props.darkTheme ? '#ffffff' : ' #000000')};
+  }
+`
+
+export const ThemeSwitchButton = styled.button`
+  background-color: transparent;
+  width: 48px;
+  height: 48px;
+  font-size: 24px;
+  margin-right: 20px;
+
+  color: ${props => (props.darkTheme ? '#ffffff' : ' #000000')};
+  border: none;
+`
+export const LogOutButton = styled.button`
+  background-color: transparent;
+  width: 96px;
+  height: 32px;
+  border-radius: 2px;
+  border-color: ${props => (props.darkTheme ? '#ffffff' : '#3b82f6')};
+  color: ${props => (props.darkTheme ? '#ffffff' : '#3b82f6')};
+  border-width: 2px;
+  margin: 4px;
+  box-shadow: none;
+`
+
+// SideBar
+
+export const SideBarDiv = styled.div`
+  background-color: wheat;
+  width: 20vw;
+  height: 100vh;
+  @media screen and ${device.sm} {
+    width: 100vw;
+    height: 100vh;
+  }
 `
