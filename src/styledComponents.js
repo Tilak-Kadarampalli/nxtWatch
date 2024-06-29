@@ -84,7 +84,7 @@ export const LoginErrorMsg = styled.p`
 export const HeaderDiv = styled.div`
   min-width: 100vw;
   background-color: ${props => (props.darkTheme ? '#000000' : '#ffffff')};
-  display: flex;
+  display: ${props => (props.showHeader ? 'flex' : 'none')};
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -109,7 +109,7 @@ export const BurgerMenu = styled.button`
   @media screen and ${device.sm} {
     background-color: transparent;
     border: none;
-    display: flex;
+    display: ${props => (props.showHeader ? 'flex' : 'none')};
     color: ${props => (props.darkTheme ? '#ffffff' : ' #000000')};
   }
 `

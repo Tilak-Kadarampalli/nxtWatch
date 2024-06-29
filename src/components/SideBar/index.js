@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import ThemeContext from '../../context/ThemeContext'
 import {SideBarDiv} from '../../styledComponents'
 
@@ -8,10 +9,7 @@ const SideBar = () => (
 
       return (
         <SideBarDiv>
-          <h1>Home</h1>
-          <h1>Trending</h1>
-          <h1>Gaming</h1>
-          <h1>Saved Videos</h1>
+          <Link to="/">Home</Link>
         </SideBarDiv>
       )
     }}

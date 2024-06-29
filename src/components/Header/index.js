@@ -26,59 +26,68 @@ class Header extends Component {
           const {darkTheme, changeTheme, showHeader, toggleHeader} = value
 
           return (
-            <HeaderDiv as="nav" darkTheme={darkTheme} showHeader={showHeader}>
-              <Link to="/">
-                {' '}
-                <HeaderLogo
-                  src={
-                    darkTheme
-                      ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
-                      : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
-                  }
-                />
-              </Link>
-
-              <BurgerMenu
-                darkTheme={darkTheme}
-                showHeader={showHeader}
-                onClick={this.toggleHeader}
-              >
-                {' '}
-                <GiHamburgerMenu />
-              </BurgerMenu>
-
-              <HeaderMenu>
-                <ThemeSwitchButton
-                  darkTheme={darkTheme}
-                  type="button"
-                  onClick={changeTheme}
-                >
-                  {darkTheme ? <FiSun /> : <FaMoon />}
-                </ThemeSwitchButton>
-
-                <ThemeSwitchButton>
+            <div>
+              <HeaderDiv as="nav" darkTheme={darkTheme} showHeader={showHeader}>
+                <Link to="/">
                   {' '}
-                  <img
-                    src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png "
-                    alt="profile"
-                    width="32px"
-                    height="32px"
+                  <HeaderLogo
+                    src={
+                      darkTheme
+                        ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
+                        : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
+                    }
                   />
-                </ThemeSwitchButton>
+                </Link>
 
-                <LogOutButton darkTheme={darkTheme} type="button">
-                  Logout
-                </LogOutButton>
-              </HeaderMenu>
-              <BurgerMenu
+                <BurgerMenu
+                  darkTheme={darkTheme}
+                  showHeader={showHeader}
+                  onClick={toggleHeader}
+                >
+                  {' '}
+                  <GiHamburgerMenu />
+                </BurgerMenu>
+
+                <HeaderMenu>
+                  <ThemeSwitchButton
+                    darkTheme={darkTheme}
+                    type="button"
+                    onClick={changeTheme}
+                  >
+                    {darkTheme ? <FiSun /> : <FaMoon />}
+                  </ThemeSwitchButton>
+
+                  <ThemeSwitchButton>
+                    {' '}
+                    <img
+                      src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png "
+                      alt="profile"
+                      width="32px"
+                      height="32px"
+                    />
+                  </ThemeSwitchButton>
+
+                  <LogOutButton darkTheme={darkTheme} type="button">
+                    Logout
+                  </LogOutButton>
+                </HeaderMenu>
+              </HeaderDiv>
+              <HeaderDiv
                 darkTheme={darkTheme}
-                showHeader={showHeader}
-                onClick={this.toggleHeader}
+                showHeader={!showHeader}
+                style={{flexDirection: 'column'}}
               >
-                {' '}
-                <IoMdClose />
-              </BurgerMenu>
-            </HeaderDiv>
+                <BurgerMenu
+                  darkTheme={darkTheme}
+                  showHeader={!showHeader}
+                  onClick={toggleHeader}
+                  style={{alignSelf: 'end'}}
+                >
+                  <IoMdClose color={darkTheme ? 'white' : 'black'} size={32} />{' '}
+                </BurgerMenu>
+                <SideBar />
+              </HeaderDiv>
+            </div>
           )
         }}
       </ThemeContext.Consumer>
