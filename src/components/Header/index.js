@@ -1,7 +1,9 @@
+import {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {FaMoon} from 'react-icons/fa'
 import {FiSun} from 'react-icons/fi'
-import PopUp from '../PopUp'
+import {GiHamburgerMenu} from 'react-icons/gi'
+import {IoMdClose} from 'react-icons/io'
 import {
   HeaderDiv,
   HeaderLogo,
@@ -10,53 +12,78 @@ import {
   LogOutButton,
   BurgerMenu,
 } from '../../styledComponents'
+
 import ThemeContext from '../../context/ThemeContext'
+import SideBar from '../SideBar'
 
-const Header = () => (
-  <ThemeContext.Consumer>
-    {value => {
-      const {darkTheme, changeTheme} = value
-      return (
-        <HeaderDiv as="nav" darkTheme={darkTheme}>
-          <Link to="/">
-            {' '}
-            <HeaderLogo
-              src={
-                darkTheme
-                  ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
-                  : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
-              }
-            />
-          </Link>
+class Header extends Component {
+  state = {displayHeader: true}
 
-          <PopUp />
+  render() {
+    return (
+      <ThemeContext.Consumer>
+        {value => {
+          const {darkTheme, changeTheme, showHeader, toggleHeader} = value
 
-          <HeaderMenu>
-            <ThemeSwitchButton
-              darkTheme={darkTheme}
-              type="button"
-              onClick={changeTheme}
-            >
-              {darkTheme ? <FiSun /> : <FaMoon />}
-            </ThemeSwitchButton>
+          return (
+            <HeaderDiv as="nav" darkTheme={darkTheme} showHeader={showHeader}>
+              <Link to="/">
+                {' '}
+                <HeaderLogo
+                  src={
+                    darkTheme
+                      ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
+                      : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
+                  }
+                />
+              </Link>
 
-            <ThemeSwitchButton>
-              {' '}
-              <img
-                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png "
-                alt="profile"
-                width="32px"
-                height="32px"
-              />
-            </ThemeSwitchButton>
+              <BurgerMenu
+                darkTheme={darkTheme}
+                showHeader={showHeader}
+                onClick={this.toggleHeader}
+              >
+                {' '}
+                <GiHamburgerMenu />
+              </BurgerMenu>
 
-            <LogOutButton darkTheme={darkTheme} type="button">
-              Logout
-            </LogOutButton>
-          </HeaderMenu>
-        </HeaderDiv>
-      )
-    }}
-  </ThemeContext.Consumer>
-)
+              <HeaderMenu>
+                <ThemeSwitchButton
+                  darkTheme={darkTheme}
+                  type="button"
+                  onClick={changeTheme}
+                >
+                  {darkTheme ? <FiSun /> : <FaMoon />}
+                </ThemeSwitchButton>
+
+                <ThemeSwitchButton>
+                  {' '}
+                  <img
+                    src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png "
+                    alt="profile"
+                    width="32px"
+                    height="32px"
+                  />
+                </ThemeSwitchButton>
+
+                <LogOutButton darkTheme={darkTheme} type="button">
+                  Logout
+                </LogOutButton>
+              </HeaderMenu>
+              <BurgerMenu
+                darkTheme={darkTheme}
+                showHeader={showHeader}
+                onClick={this.toggleHeader}
+              >
+                {' '}
+                <IoMdClose />
+              </BurgerMenu>
+            </HeaderDiv>
+          )
+        }}
+      </ThemeContext.Consumer>
+    )
+  }
+}
+
 export default Header

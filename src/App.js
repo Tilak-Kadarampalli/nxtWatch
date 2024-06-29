@@ -7,16 +7,27 @@ import ProtectedRoute from './components/ProtectedRoute'
 import Home from './components/Home'
 
 class App extends Component {
-  state = {darkTheme: true}
+  state = {darkTheme: true, showHeader: true}
 
-  changeTheme = darkTheme => {
+  changeTheme = () => {
     this.setState(prevState => ({darkTheme: !prevState.darkTheme}))
   }
 
+  toggleHeader = () => {
+    this.setState(prevState => ({showHeader: !prevState.showHeader}))
+  }
+
   render() {
-    const {darkTheme} = this.state
+    const {darkTheme, showHeader} = this.state
     return (
-      <ThemeContext.Provider value={{darkTheme, changeTheme: this.changeTheme}}>
+      <ThemeContext.Provider
+        value={{
+          darkTheme,
+          changeTheme: this.changeTheme,
+          showHeader,
+          toggleHeader: this.toggleHeader,
+        }}
+      >
         <Switch>
           <Route exact path="/login" component={Login} />
           <ProtectedRoute exact path="/" component={Home} />
