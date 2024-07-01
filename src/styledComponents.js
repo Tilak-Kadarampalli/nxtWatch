@@ -142,8 +142,22 @@ export const SideBarDiv = styled.div`
   background-color: wheat;
   width: 20vw;
   height: 100vh;
+
   @media screen and ${device.sm} {
     width: 100vw;
     height: 100vh;
+    display: flex;
+    justify-content: center;
   }
+`
+export const SideBarLink = styled.div`
+  color: black;
+  background-color: white;
+  display: flex;
+`
+
+export const SideBarText = styled.span`
+  font-weight: bold;
+  font-size: 16px;
+  text-align: left;
 `
