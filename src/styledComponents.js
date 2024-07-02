@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
 
 // Breakpoints
 const device = {
@@ -137,27 +138,58 @@ export const LogOutButton = styled.button`
 `
 
 // SideBar
-
 export const SideBarDiv = styled.div`
-  background-color: wheat;
-  width: 20vw;
-  height: 100vh;
-
-  @media screen and ${device.sm} {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-  }
-`
-export const SideBarLink = styled.div`
-  color: black;
-  background-color: white;
   display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: inherit;
+  background-color: ${props => (props.darkTheme ? '#000000' : ' #ffffff')};
+`
+export const SideBarLinks = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  min-width: inherit;
 `
 
-export const SideBarText = styled.span`
-  font-weight: bold;
-  font-size: 16px;
-  text-align: left;
+export const LinkDiv = styled.div`
+  color: ${props => (props.darkTheme ? '#ffffff' : ' #000000')};
+`
+export const SideBarCentered = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const LinkText = styled.span`
+  color: ${props => (props.darkTheme ? '#ffffff' : ' #000000')};
+  margin: 8px 8px 8px 36px;
+`
+
+export const NavLink = styled(Link)`
+  min-width: 100vw;
+  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: ${props => {
+   if(props.darkTheme){
+       if(props.active){
+           return '#2f2f2f'
+       }
+       else{
+       return '#000000'
+       }
+    else{
+        if(props.active){
+            return '#fefefe'
+        }
+        return '#ffffff'
+    }
+   }
+  }};
+  color: ${props => (props.darkTheme ? '#ffffff' : ' #000000')};
+  text-decoration: none;
 `
