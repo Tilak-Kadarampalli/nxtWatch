@@ -24,28 +24,65 @@ const SideBar = () => {
           <SideBarDiv darkTheme={darkTheme}>
             <SideBarLinks>
               <SideBarCentered>
-                <NavLink active={location.pathname === '/'} to="/">
+                <NavLink
+                  darkTheme={darkTheme}
+                  active={location.pathname === '/'}
+                  to="/"
+                >
                   <LinkDiv darkTheme={darkTheme}>
                     <AiFillHome
-                      color={location.pathname === '/' ? '#fefe20' : 'inherit'}
+                      color={location.pathname === '/' ? '#ff0b37' : 'inherit'}
                     />{' '}
-                    <LinkText>Home</LinkText>
+                    <LinkText darkTheme={darkTheme}>Home</LinkText>
                   </LinkDiv>
                 </NavLink>
 
                 <NavLink
+                  darkTheme={darkTheme}
                   active={location.pathname === '/trending'}
                   to="/trending"
                 >
                   <LinkDiv darkTheme={darkTheme}>
-                    <AiFillHome
+                    <FaFireAlt
                       color={
                         location.pathname === '/trending'
                           ? '#ff0b37'
                           : 'inherit'
                       }
                     />{' '}
-                    <LinkText>Home</LinkText>
+                    <LinkText darkTheme={darkTheme}>Trending</LinkText>
+                  </LinkDiv>
+                </NavLink>
+
+                <NavLink
+                  darkTheme={darkTheme}
+                  active={location.pathname === '/gaming'}
+                  to="/gaming"
+                >
+                  <LinkDiv darkTheme={darkTheme}>
+                    <SiYoutubegaming
+                      color={
+                        location.pathname === '/gaming' ? '#ff0b37' : 'inherit'
+                      }
+                    />{' '}
+                    <LinkText darkTheme={darkTheme}>Gaming</LinkText>
+                  </LinkDiv>
+                </NavLink>
+
+                <NavLink
+                  darkTheme={darkTheme}
+                  active={location.pathname === '/saved-videos'}
+                  to="/saved-videos"
+                >
+                  <LinkDiv darkTheme={darkTheme}>
+                    <RiPlayListAddFill
+                      color={
+                        location.pathname === '/saved-videos'
+                          ? '#ff0b37'
+                          : 'inherit'
+                      }
+                    />{' '}
+                    <LinkText darkTheme={darkTheme}>Saved Videos</LinkText>
                   </LinkDiv>
                 </NavLink>
               </SideBarCentered>

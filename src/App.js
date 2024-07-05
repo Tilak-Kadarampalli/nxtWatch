@@ -6,6 +6,8 @@ import Login from './components/Login'
 import ProtectedRoute from './components/ProtectedRoute'
 import Home from './components/Home'
 import Trending from './components/Trending'
+import Gaming from './components/Gaming'
+import SavedVideos from './components/SavedVideos'
 
 class App extends Component {
   state = {darkTheme: true, showHeader: true}
@@ -33,6 +35,8 @@ class App extends Component {
           <Route exact path="/login" component={Login} />
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/trending" component={Trending} />
+          <ProtectedRoute exact path="/gaming" component={Gaming} />
+          <ProtectedRoute exact path="/saved-videos" component={SavedVideos} />
         </Switch>
       </ThemeContext.Provider>
     )

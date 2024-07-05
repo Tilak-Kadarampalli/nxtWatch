@@ -1,7 +1,7 @@
 import {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {FaMoon} from 'react-icons/fa'
-import {FiSun} from 'react-icons/fi'
+import {FiSun, FiLogOut} from 'react-icons/fi'
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {IoMdClose} from 'react-icons/io'
 import {
@@ -39,13 +39,28 @@ class Header extends Component {
                   />
                 </Link>
 
-                <BurgerMenu
-                  darkTheme={darkTheme}
-                  showHeader={showHeader}
-                  onClick={toggleHeader}
-                >
-                  {' '}
-                  <GiHamburgerMenu />
+                <BurgerMenu darkTheme={darkTheme} showHeader={showHeader}>
+                  <ThemeSwitchButton
+                    darkTheme={darkTheme}
+                    type="button"
+                    onClick={changeTheme}
+                  >
+                    {darkTheme ? <FiSun /> : <FaMoon />}
+                  </ThemeSwitchButton>{' '}
+                  <ThemeSwitchButton
+                    darkTheme={darkTheme}
+                    type="button"
+                    onClick={toggleHeader}
+                  >
+                    <GiHamburgerMenu />{' '}
+                  </ThemeSwitchButton>
+                  <ThemeSwitchButton
+                    darkTheme={darkTheme}
+                    type="button"
+                    onClick={toggleHeader}
+                  >
+                    <FiLogOut />{' '}
+                  </ThemeSwitchButton>
                 </BurgerMenu>
 
                 <HeaderMenu>

@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 // Breakpoints
 const device = {
   sm: `(max-width : 576px)`,
-  lg: `(max-width: 768px)`,
+  lg: `(min-width: 577px)`,
 }
 
 export const LoginBg = styled.div`
@@ -111,6 +111,9 @@ export const BurgerMenu = styled.button`
     background-color: transparent;
     border: none;
     display: ${props => (props.showHeader ? 'flex' : 'none')};
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     color: ${props => (props.darkTheme ? '#ffffff' : ' #000000')};
   }
 `
@@ -120,7 +123,7 @@ export const ThemeSwitchButton = styled.button`
   width: 48px;
   height: 48px;
   font-size: 24px;
-  margin-right: 20px;
+  margin-left: 20px;
 
   color: ${props => (props.darkTheme ? '#ffffff' : ' #000000')};
   border: none;
@@ -144,14 +147,21 @@ export const SideBarDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: inherit;
+  width: inherit;
   background-color: ${props => (props.darkTheme ? '#000000' : ' #ffffff')};
+  @media screen and ${device.lg} {
+    width: 30vw;
+    justify-content: flex-start;
+  }
 `
 export const SideBarLinks = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  min-width: inherit;
+  align-items: center;
+  @media screen and ${device.lg} {
+    justify-content: flex-start;
+  }
 `
 
 export const LinkDiv = styled.div`
@@ -160,6 +170,11 @@ export const LinkDiv = styled.div`
 export const SideBarCentered = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media screen and ${device.lg} {
+    justify-content: flex-start;
+  }
 `
 
 export const LinkText = styled.span`
@@ -171,25 +186,38 @@ export const NavLink = styled(Link)`
   min-width: 100vw;
   padding: 8px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+
   background-color: ${props => {
-   if(props.darkTheme){
-       if(props.active){
-           return '#2f2f2f'
-       }
-       else{
-       return '#000000'
-       }
-    else{
-        if(props.active){
-            return '#fefefe'
-        }
-        return '#ffffff'
+    if (props.darkTheme) {
+      if (props.active) {
+        return '#2f2f2f'
+      }
+      return '#000000'
     }
-   }
+    if (props.active) {
+      return '#e2e8f0'
+    }
+    return '#ffffff'
   }};
-  color: ${props => (props.darkTheme ? '#ffffff' : ' #000000')};
   text-decoration: none;
+  @media screen and ${device.lg} {
+    min-width: 30vw;
+  }
+`
+// Home
+
+export const HomeDiv = styled.div`
+  display: flex;
+  @media screen and ${device.lg} {
+    flex-direction: row;
+  }
+`
+
+export const LargeSideBarDiv = styled.div`
+  max-width: 30vw;
+  @media screen and ${device.sm} {
+    display: none;
+  }
 `
