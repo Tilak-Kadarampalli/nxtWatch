@@ -11,7 +11,7 @@ import {
   SideBarCentered,
   LinkText,
   NavLink,
-} from '../../styledComponents'
+} from './styledComponents'
 
 const SideBar = () => {
   const location = useLocation()
