@@ -88,5 +88,13 @@ export const SearchButton = styled.button`
 export const VideosList = styled.ul`
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
+`
+export const FailureContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
