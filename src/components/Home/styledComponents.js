@@ -91,6 +91,8 @@ export const VideosList = styled.ul`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  height: 50vh;
+  overflow-y: scroll;
 `
 export const FailureContainer = styled.div`
   display: flex;
