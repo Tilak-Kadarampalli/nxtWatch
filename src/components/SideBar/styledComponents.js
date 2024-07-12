@@ -14,7 +14,6 @@ export const GlobalStyling = styled.div`
 
 export const SideBarDiv = styled.div`
   display: flex;
-
   height: 100vh;
   flex-direction: column;
   justify-content: center;
@@ -22,7 +21,8 @@ export const SideBarDiv = styled.div`
   width: inherit;
   background-color: ${props => (props.darkTheme ? '#000000' : ' #ffffff')};
   @media screen and ${device.lg} {
-    width: 30vw;
+    width: 25vw;
+    padding-left: 80px;
     justify-content: flex-start;
   }
 `
