@@ -2,15 +2,47 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import ReactPlayer from 'react-player'
+import {BiLike, BiDislike} from 'react-icons/bi'
+import {RiPlayListAddLine} from 'react-icons/ri'
 import Header from '../Header'
 import SideBar from '../SideBar'
-import {DetailsContainer} from './styledComponents'
+import {
+  DetailsContainer,
+  VideoDetailsMain,
+  VideoDetailsDiv,
+  LargeSideBarDiv,
+  DetailsCont,
+  VideoTitle,
+  VideoInfo,
+  ActionButton,
+} from './styledComponents'
+import ThemeContext from '../../context/ThemeContext'
 
 class VideoDetails extends Component {
-  state = {videoDetails: {}}
+  state = {videoDetails: {}, liked: false, unliked: false, saved: false}
 
   componentDidMount() {
     this.getVideoDetails()
+  }
+
+  onClickLike = () => {
+    const {liked, unliked} = this.state
+    if (unliked) {
+      this.setState({unliked: false})
+    }
+    this.setState(prevState => ({
+      liked: !prevState.liked,
+    }))
+  }
+
+  onClickDisike = () => {
+    const {liked, unliked} = this.state
+    if (liked) {
+      this.setState({liked: false})
+    }
+    this.setState(prevState => ({
+      unliked: !prevState.unliked,
+    }))
   }
 
   getVideoDetails = async () => {
@@ -51,7 +83,7 @@ class VideoDetails extends Component {
   }
 
   render() {
-    const {videoDetails} = this.state
+    const {videoDetails, liked, unliked} = this.state
     const {
       id,
       title,
@@ -65,13 +97,47 @@ class VideoDetails extends Component {
       description,
     } = videoDetails
     return (
-      <div>
-        <Header />
-        <DetailsContainer>
-          <SideBar />
-          <ReactPlayer url={videoUrl} />
-        </DetailsContainer>
-      </div>
+      <ThemeContext.Consumer>
+        {value => {
+          const {darkTheme, addToSavedVideos} = value
+          const onClickSave = () => {
+            addToSavedVideos(videoDetails)
+          }
+
+          return (
+            <VideoDetailsMain>
+              <Header />
+              <VideoDetailsDiv>
+                <LargeSideBarDiv>
+                  <SideBar />
+                </LargeSideBarDiv>
+                <DetailsCont>
+                  <ReactPlayer url={videoUrl} width="100%" />
+                  <VideoTitle>{title}</VideoTitle>
+                  <VideoInfo>
+                    <p>
+                      {viewCount} . {publishedAt}
+                    </p>
+                    <div>
+                      <ActionButton onClick={this.onClickLike}>
+                        <BiLike size={20} />
+                        Like
+                      </ActionButton>
+                      <ActionButton onClick={this.onClickDisike}>
+                        <BiDislike size={20} />
+                        Dislike
+                      </ActionButton>
+                      <ActionButton onClick={onClickSave}>
+                        <RiPlayListAddLine size={20} /> Save
+                      </ActionButton>
+                    </div>
+                  </VideoInfo>
+                </DetailsCont>
+              </VideoDetailsDiv>
+            </VideoDetailsMain>
+          )
+        }}
+      </ThemeContext.Consumer>
     )
   }
 }

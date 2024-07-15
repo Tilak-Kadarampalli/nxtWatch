@@ -11,7 +11,7 @@ import SavedVideos from './components/SavedVideos'
 import VideoDetails from './components/VideoDetails'
 
 class App extends Component {
-  state = {darkTheme: true, showHeader: true}
+  state = {darkTheme: true, showHeader: true, savedVideos: []}
 
   changeTheme = () => {
     this.setState(prevState => ({darkTheme: !prevState.darkTheme}))
@@ -21,8 +21,14 @@ class App extends Component {
     this.setState(prevState => ({showHeader: !prevState.showHeader}))
   }
 
+  addToSavedVideos = newVideo => {
+    this.setState(prevState => ({
+      savedVideos: [...prevState.savedVideos, newVideo],
+    }))
+  }
+
   render() {
-    const {darkTheme, showHeader} = this.state
+    const {darkTheme, showHeader, savedVideos} = this.state
     return (
       <ThemeContext.Provider
         value={{
@@ -30,6 +36,8 @@ class App extends Component {
           changeTheme: this.changeTheme,
           showHeader,
           toggleHeader: this.toggleHeader,
+          savedVideos,
+          addToSavedVideos: this.addToSavedVideos,
         }}
       >
         <Switch>

@@ -5,6 +5,8 @@ const ThemeContext = React.createContext({
   changeTheme: () => {},
   showHeader: true,
   toggleHeader: () => {},
+  savedVideos: [],
+  addToSavedVideos: () => {},
 })
 
 export default ThemeContext
