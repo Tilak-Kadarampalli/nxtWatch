@@ -2,6 +2,7 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import ReactPlayer from 'react-player'
+import {formatDistanceToNow, parse} from 'date-fns'
 import {BiLike, BiDislike} from 'react-icons/bi'
 import {RiPlayListAddLine} from 'react-icons/ri'
 import Header from '../Header'
@@ -15,6 +16,12 @@ import {
   VideoTitle,
   VideoInfo,
   ActionButton,
+  ChannelDetailsDiv,
+  ChannelProfileImg,
+  ChannelText,
+  ChannelName,
+  ChannelSubscribers,
+  ChannelDescription,
 } from './styledComponents'
 import ThemeContext from '../../context/ThemeContext'
 
@@ -74,7 +81,10 @@ class VideoDetails extends Component {
         channelProfileImgUrl: rawData.channel.profile_image_url,
         channelSubscriberCount: rawData.channel.subscriber_count,
         viewCount: rawData.view_count,
-        publishedAt: rawData.published_at,
+        publishedAt: formatDistanceToNow(
+          parse(rawData.published_at, 'MMM d, yyyy', new Date()),
+          {addSuffix: true},
+        ),
         description: rawData.description,
       }
 
@@ -132,6 +142,17 @@ class VideoDetails extends Component {
                       </ActionButton>
                     </div>
                   </VideoInfo>
+                  <hr color="#64748b" width="100%" />
+                  <ChannelDetailsDiv>
+                    <ChannelProfileImg src={channelProfileImgUrl} />
+                    <ChannelText>
+                      <ChannelName>{channelName}</ChannelName>
+                      <ChannelSubscribers>
+                        {channelSubscriberCount} Subscribers
+                      </ChannelSubscribers>
+                      <ChannelDescription>{description}</ChannelDescription>
+                    </ChannelText>
+                  </ChannelDetailsDiv>
                 </DetailsCont>
               </VideoDetailsDiv>
             </VideoDetailsMain>
