@@ -21,8 +21,6 @@ export const SideBarDiv = styled.div`
   width: inherit;
   background-color: ${props => (props.darkTheme ? '#000000' : ' #ffffff')};
   @media screen and ${device.lg} {
-    width: 25vw;
-    padding-left: 80px;
     justify-content: flex-start;
   }
 `
