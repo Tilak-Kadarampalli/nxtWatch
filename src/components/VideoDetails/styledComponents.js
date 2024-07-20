@@ -8,17 +8,15 @@ const device = {
 export const DetailsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  width: 75vw;
 `
 export const VideoDetailsMain = styled.div`
-  padding: 0px;
-  margin: 0px;
   display: flex;
   flex-direction: column;
 `
+
 export const VideoDetailsDiv = styled.div`
   display: flex;
-  width: 100vw;
+
   @media screen and ${device.lg} {
     flex-direction: row;
   }
@@ -31,7 +29,7 @@ export const LargeSideBarDiv = styled.div`
 `
 export const DetailsCont = styled.div`
   display: flex;
-  width: 75vw;
+  width: 100%;
   padding: 20px;
 
   flex-direction: column;
@@ -51,7 +49,7 @@ export const VideoTitle = styled.h1`
 `
 export const VideoInfo = styled.div`
   display: flex;
-  width: inherit;
+  width: 100%;
   padding: 0px 20px 0px 20px;
   flex-direction: row;
   justify-content: space-between;

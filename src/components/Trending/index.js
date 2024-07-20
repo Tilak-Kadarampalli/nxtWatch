@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import {FaFireAlt} from 'react-icons/fa'
+import {formatDistanceToNow, parse} from 'date-fns'
 import Header from '../Header'
 import SideBar from '../SideBar'
 import TrendingVideo from '../TrendingVideo'
@@ -44,7 +45,10 @@ class Trending extends Component {
         channelProfileImgUrl: eachVideo.channel.profile_image_url,
         thumbnailUrl: eachVideo.thumbnail_url,
         viewCount: eachVideo.view_count,
-        publishedAt: eachVideo.published_at,
+        publishedAt: formatDistanceToNow(
+          parse(eachVideo.published_at, 'MMM d, yyyy', new Date()),
+          {addSuffix: true},
+        ),
       }))
 
       this.setState({trendingVideos: updatedVideosList})

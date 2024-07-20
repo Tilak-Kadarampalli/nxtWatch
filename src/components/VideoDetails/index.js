@@ -26,7 +26,12 @@ import {
 import ThemeContext from '../../context/ThemeContext'
 
 class VideoDetails extends Component {
-  state = {videoDetails: {}, liked: false, unliked: false, saved: false}
+  state = {
+    videoDetails: {},
+    liked: false,
+    unliked: false,
+    saved: false,
+  }
 
   componentDidMount() {
     this.getVideoDetails()
@@ -88,7 +93,9 @@ class VideoDetails extends Component {
         description: rawData.description,
       }
 
-      this.setState({videoDetails: processedData})
+      this.setState({
+        videoDetails: processedData,
+      })
     }
   }
 
@@ -122,7 +129,7 @@ class VideoDetails extends Component {
                   <SideBar />
                 </LargeSideBarDiv>
                 <DetailsCont>
-                  <ReactPlayer url={videoUrl} width="100%" />
+                  <ReactPlayer url={videoUrl} />
                   <VideoTitle>{title}</VideoTitle>
                   <VideoInfo>
                     <p>

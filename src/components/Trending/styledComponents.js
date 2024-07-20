@@ -8,6 +8,8 @@ const device = {
 export const TrendingCont = styled.div`
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
+  height: 100vh;
   @media screen and ${device.lg} {
     width: 70vw;
   }
