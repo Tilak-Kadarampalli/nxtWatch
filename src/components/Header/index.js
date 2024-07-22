@@ -1,5 +1,8 @@
 import {Component} from 'react'
-import {Link} from 'react-router-dom'
+import Popup from 'reactjs-popup'
+import {Link, Redirect} from 'react-router-dom'
+import history from 'history'
+import Cookies from 'js-cookie'
 import {FaMoon} from 'react-icons/fa'
 import {FiSun, FiLogOut} from 'react-icons/fi'
 import {GiHamburgerMenu} from 'react-icons/gi'
@@ -12,14 +15,25 @@ import {
   LogOutButton,
   BurgerMenu,
 } from '../../styledComponents'
+import {PopUpDiv, PopUpButton} from './styledComponents'
 
 import ThemeContext from '../../context/ThemeContext'
 import SideBar from '../SideBar'
 
 class Header extends Component {
-  state = {displayHeader: true}
+  state = {displayHeader: true, loggedOut: false}
+
+  onLogout = () => {
+    Cookies.remove('jwt_token')
+    this.setState({loggedOut: true})
+  }
 
   render() {
+    const {loggedOut} = this.state
+
+    if (loggedOut) {
+      return <Redirect to="/login" />
+    }
     return (
       <ThemeContext.Consumer>
         {value => {
@@ -59,7 +73,31 @@ class Header extends Component {
                     type="button"
                     onClick={toggleHeader}
                   >
-                    <FiLogOut />{' '}
+                    <Popup trigger={<FiLogOut />} modal>
+                      {close => (
+                        <PopUpDiv className="modal">
+                          <div className="content">
+                            Are you sure you want to logout?
+                          </div>
+                          <div className="actions">
+                            <PopUpButton
+                              cancel
+                              className="button"
+                              onClick={() => {
+                                console.log('modal closed ')
+                                close()
+                              }}
+                            >
+                              Cancel
+                            </PopUpButton>
+
+                            <PopUpButton onClick={this.onLogout}>
+                              Confirm
+                            </PopUpButton>
+                          </div>
+                        </PopUpDiv>
+                      )}
+                    </Popup>
                   </ThemeSwitchButton>
                 </BurgerMenu>
 
@@ -71,7 +109,6 @@ class Header extends Component {
                   >
                     {darkTheme ? <FiSun /> : <FaMoon />}
                   </ThemeSwitchButton>
-
                   <ThemeSwitchButton>
                     {' '}
                     <img
@@ -82,9 +119,39 @@ class Header extends Component {
                     />
                   </ThemeSwitchButton>
 
-                  <LogOutButton darkTheme={darkTheme} type="button">
-                    Logout
-                  </LogOutButton>
+                  <Popup
+                    trigger={
+                      <LogOutButton darkTheme={darkTheme} className="button">
+                        {' '}
+                        Logout{' '}
+                      </LogOutButton>
+                    }
+                    modal
+                  >
+                    {close => (
+                      <PopUpDiv className="modal">
+                        <div className="content">
+                          Are you sure you want to logout?
+                        </div>
+                        <div className="actions">
+                          <PopUpButton
+                            cancel
+                            className="button"
+                            onClick={() => {
+                              console.log('modal closed ')
+                              close()
+                            }}
+                          >
+                            Cancel
+                          </PopUpButton>
+
+                          <PopUpButton onClick={this.onLogout}>
+                            Confirm
+                          </PopUpButton>
+                        </div>
+                      </PopUpDiv>
+                    )}
+                  </Popup>
                 </HeaderMenu>
               </HeaderDiv>
               <HeaderDiv
