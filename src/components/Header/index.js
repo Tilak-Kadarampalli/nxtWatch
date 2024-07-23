@@ -1,7 +1,6 @@
 import {Component} from 'react'
 import Popup from 'reactjs-popup'
 import {Link, Redirect} from 'react-router-dom'
-import history from 'history'
 import Cookies from 'js-cookie'
 import {FaMoon} from 'react-icons/fa'
 import {FiSun, FiLogOut} from 'react-icons/fi'
@@ -19,21 +18,12 @@ import {PopUpDiv, PopUpButton} from './styledComponents'
 
 import ThemeContext from '../../context/ThemeContext'
 import SideBar from '../SideBar'
+import PopUp from '../PopUp'
 
 class Header extends Component {
-  state = {displayHeader: true, loggedOut: false}
-
-  onLogout = () => {
-    Cookies.remove('jwt_token')
-    this.setState({loggedOut: true})
-  }
+  state = {displayHeader: true}
 
   render() {
-    const {loggedOut} = this.state
-
-    if (loggedOut) {
-      return <Redirect to="/login" />
-    }
     return (
       <ThemeContext.Consumer>
         {value => {
@@ -74,29 +64,7 @@ class Header extends Component {
                     onClick={toggleHeader}
                   >
                     <Popup trigger={<FiLogOut />} modal>
-                      {close => (
-                        <PopUpDiv className="modal">
-                          <div className="content">
-                            Are you sure you want to logout?
-                          </div>
-                          <div className="actions">
-                            <PopUpButton
-                              cancel
-                              className="button"
-                              onClick={() => {
-                                console.log('modal closed ')
-                                close()
-                              }}
-                            >
-                              Cancel
-                            </PopUpButton>
-
-                            <PopUpButton onClick={this.onLogout}>
-                              Confirm
-                            </PopUpButton>
-                          </div>
-                        </PopUpDiv>
-                      )}
+                      {close => <PopUp close={close} />}
                     </Popup>
                   </ThemeSwitchButton>
                 </BurgerMenu>
@@ -128,29 +96,7 @@ class Header extends Component {
                     }
                     modal
                   >
-                    {close => (
-                      <PopUpDiv className="modal">
-                        <div className="content">
-                          Are you sure you want to logout?
-                        </div>
-                        <div className="actions">
-                          <PopUpButton
-                            cancel
-                            className="button"
-                            onClick={() => {
-                              console.log('modal closed ')
-                              close()
-                            }}
-                          >
-                            Cancel
-                          </PopUpButton>
-
-                          <PopUpButton onClick={this.onLogout}>
-                            Confirm
-                          </PopUpButton>
-                        </div>
-                      </PopUpDiv>
-                    )}
+                    {close => <PopUp close={close} />}
                   </Popup>
                 </HeaderMenu>
               </HeaderDiv>

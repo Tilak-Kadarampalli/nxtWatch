@@ -86,6 +86,10 @@ class Home extends Component {
   renderVideosList = () => {
     const {videosList} = this.state
 
+    if (videosList.length === 0) {
+      return this.renderEmptyView()
+    }
+
     return (
       <VideosList>
         {videosList.map(eachVideo => (
@@ -127,6 +131,28 @@ class Home extends Component {
     </ThemeContext.Consumer>
   )
 
+  renderEmptyView = () => (
+    <ThemeContext.Consumer>
+      {value => {
+        const {darkTheme} = value
+        return (
+          <FailureContainer>
+            <img
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+              width="224px"
+              alt="no videos"
+            />
+            <h1>No Search results found</h1>
+            <p>Try different key words or remove search filter</p>
+            <button type="button" onClick={this.getVideosList}>
+              Retry
+            </button>
+          </FailureContainer>
+        )
+      }}
+    </ThemeContext.Consumer>
+  )
+
   renderVideosContainer = () => {
     const {apiStatus} = this.state
 
@@ -146,8 +172,16 @@ class Home extends Component {
     this.setState({displayBanner: false})
   }
 
+  onChangeSearch = event => {
+    this.setState({searchQuery: event.target.value})
+  }
+
+  searchVideos = () => {
+    this.getVideosList()
+  }
+
   render() {
-    const {displayBanner} = this.state
+    const {displayBanner, searchQuery} = this.state
     return (
       <ThemeContext.Consumer>
         {value => {
@@ -181,8 +215,13 @@ class Home extends Component {
 
                   <HomeContent>
                     <SearchBox>
-                      <SearchField type="search" placeholder="Search" />
-                      <SearchButton>
+                      <SearchField
+                        type="search"
+                        placeholder="Search"
+                        onChange={this.onChangeSearch}
+                        value={searchQuery}
+                      />
+                      <SearchButton onClick={this.searchVideos}>
                         <FaSearch />
                       </SearchButton>
                     </SearchBox>

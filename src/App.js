@@ -11,7 +11,7 @@ import SavedVideos from './components/SavedVideos'
 import VideoDetails from './components/VideoDetails'
 
 class App extends Component {
-  state = {darkTheme: true, showHeader: true, savedVideos: []}
+  state = {darkTheme: false, showHeader: true, savedVideos: []}
 
   changeTheme = () => {
     this.setState(prevState => ({darkTheme: !prevState.darkTheme}))
