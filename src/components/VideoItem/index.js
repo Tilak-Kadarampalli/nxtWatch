@@ -39,11 +39,11 @@ const VideoItem = props => {
         return (
           <VideoListItem>
             <VideoLink to={`videos/${id}`}>
-              <ThumbnailImg src={thumbnailUrl} />
+              <ThumbnailImg src={thumbnailUrl} alt="video thumbnail" />
               <VideoInfo>
-                <ChannelProfile src={channelProfileImgUrl} alt="" />
+                <ChannelProfile src={channelProfileImgUrl} alt="channel logo" />
                 <VideoTextDiv>
-                  <VideoTitle>{title}</VideoTitle>
+                  <VideoTitle as="p">{title}</VideoTitle>
                   <VideoCount>{channelName}</VideoCount>
                   <VideoCount>
                     {viewCount} . {convertDateToDuration(publishedAt)}

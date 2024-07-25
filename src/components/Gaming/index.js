@@ -57,13 +57,13 @@ class Gaming extends Component {
           const {darkTheme} = value
 
           return (
-            <TrendingMain>
+            <TrendingMain data-testid="gaming" darkTheme={darkTheme}>
               <Header />
               <TrendingDiv>
                 <LargeSideBarDiv>
                   <SideBar />
                 </LargeSideBarDiv>
-                <TrendingCont>
+                <TrendingCont darkTheme={darkTheme}>
                   <TrendingBanner>
                     <LogoDiv>
                       <FaFireAlt color="#ff0000" size="32px" />

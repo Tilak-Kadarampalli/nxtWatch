@@ -29,7 +29,8 @@ export const HomeCont = styled.div`
   display: flex;
   width: 70vw;
   flex-direction: column;
-  background-color: #f1f1f1;
+
+  background-color: ${props => (props.darkTheme ? '#181818 ' : ' #f9f9f9')};
   @media screen and ${device.sm} {
     width: 100vw;
   }

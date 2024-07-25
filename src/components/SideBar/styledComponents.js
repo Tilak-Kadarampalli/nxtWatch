@@ -35,25 +35,27 @@ export const SideBarLinks = styled.div`
   }
 `
 
-export const LinkDiv = styled.div`
+export const LinkDiv = styled.li`
   color: ${props => (props.darkTheme ? '#ffffff' : ' #000000')};
 `
-export const SideBarCentered = styled.div`
+export const SideBarCentered = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  list-style: none;
   align-items: center;
   @media screen and ${device.lg} {
     justify-content: flex-start;
   }
 `
 
-export const LinkText = styled.span`
+export const LinkText = styled(Link)`
   color: ${props => (props.darkTheme ? '#ffffff' : ' #000000')};
   margin: 8px 8px 8px 36px;
+  text-decoration: none;
 `
 
-export const NavLink = styled(Link)`
+export const NavLink = styled.div`
   min-width: 100vw;
   padding: 8px;
   display: flex;

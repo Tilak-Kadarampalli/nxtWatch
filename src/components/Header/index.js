@@ -1,6 +1,6 @@
 import {Component} from 'react'
 import Popup from 'reactjs-popup'
-import {Link, Redirect} from 'react-router-dom'
+import {Link, Redirect, withRouter} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import {FaMoon} from 'react-icons/fa'
 import {FiSun, FiLogOut} from 'react-icons/fi'
@@ -40,6 +40,7 @@ class Header extends Component {
                         ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
                         : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
                     }
+                    alt="website logo"
                   />
                 </Link>
 
@@ -48,6 +49,7 @@ class Header extends Component {
                     darkTheme={darkTheme}
                     type="button"
                     onClick={changeTheme}
+                    data-testid="theme"
                   >
                     {darkTheme ? <FiSun /> : <FaMoon />}
                   </ThemeSwitchButton>{' '}
@@ -123,4 +125,4 @@ class Header extends Component {
   }
 }
 
-export default Header
+export default withRouter(Header)

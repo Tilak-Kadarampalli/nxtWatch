@@ -1,4 +1,4 @@
-import {useLocation, Link} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import {AiFillHome} from 'react-icons/ai'
 import {FaFireAlt} from 'react-icons/fa'
 import {SiYoutubegaming} from 'react-icons/si'
@@ -18,8 +18,8 @@ import {
   ContactIcon,
 } from './styledComponents'
 
-const SideBar = () => {
-  const location = useLocation()
+const SideBar = props => {
+  const {match} = props
   return (
     <ThemeContext.Consumer>
       {value => {
@@ -29,71 +29,67 @@ const SideBar = () => {
           <SideBarDiv darkTheme={darkTheme}>
             <SideBarLinks>
               <SideBarCentered>
-                <NavLink
-                  darkTheme={darkTheme}
-                  active={location.pathname === '/'}
-                  to="/"
-                >
+                <LinkText darkTheme={darkTheme} to="/saved-videos">
+                  Saved Videos
+                </LinkText>
+                <NavLink darkTheme={darkTheme} active={match.path === '/'}>
                   <LinkDiv darkTheme={darkTheme}>
                     <AiFillHome
-                      color={location.pathname === '/' ? '#ff0b37' : 'inherit'}
+                      color={match.path === '/' ? '#ff0b37' : 'inherit'}
                     />{' '}
-                    <LinkText darkTheme={darkTheme}>Home</LinkText>
+                    <LinkText darkTheme={darkTheme} to="/">
+                      Home
+                    </LinkText>
                   </LinkDiv>
                 </NavLink>
 
                 <NavLink
                   darkTheme={darkTheme}
-                  active={location.pathname === '/trending'}
-                  to="/trending"
+                  active={match.path === '/trending'}
                 >
                   <LinkDiv darkTheme={darkTheme}>
                     <FaFireAlt
-                      color={
-                        location.pathname === '/trending'
-                          ? '#ff0b37'
-                          : 'inherit'
-                      }
+                      color={match.path === '/trending' ? '#ff0b37' : 'inherit'}
                     />{' '}
-                    <LinkText darkTheme={darkTheme}>Trending</LinkText>
+                    <LinkText darkTheme={darkTheme} to="/trending">
+                      Trending
+                    </LinkText>
                   </LinkDiv>
                 </NavLink>
 
                 <NavLink
                   darkTheme={darkTheme}
-                  active={location.pathname === '/gaming'}
-                  to="/gaming"
+                  active={match.path === '/gaming'}
                 >
                   <LinkDiv darkTheme={darkTheme}>
                     <SiYoutubegaming
-                      color={
-                        location.pathname === '/gaming' ? '#ff0b37' : 'inherit'
-                      }
+                      color={match.path === '/gaming' ? '#ff0b37' : 'inherit'}
                     />{' '}
-                    <LinkText darkTheme={darkTheme}>Gaming</LinkText>
+                    <LinkText darkTheme={darkTheme} to="/gaming">
+                      Gaming
+                    </LinkText>
                   </LinkDiv>
                 </NavLink>
 
                 <NavLink
                   darkTheme={darkTheme}
-                  active={location.pathname === '/saved-videos'}
-                  to="/saved-videos"
+                  active={match.path === '/saved-videos'}
                 >
                   <LinkDiv darkTheme={darkTheme}>
                     <RiPlayListAddFill
                       color={
-                        location.pathname === '/saved-videos'
-                          ? '#ff0b37'
-                          : 'inherit'
+                        match.path === '/saved-videos' ? '#ff0b37' : 'inherit'
                       }
                     />{' '}
-                    <LinkText darkTheme={darkTheme}>Saved Videos</LinkText>
+                    <LinkText darkTheme={darkTheme} to="/saved-videos">
+                      Saved Videos
+                    </LinkText>
                   </LinkDiv>
                 </NavLink>
               </SideBarCentered>
             </SideBarLinks>
             <ContactDiv>
-              <ContactHead>CONTACT US</ContactHead>
+              <ContactHead as="p">CONTACT US</ContactHead>
               <ContactIcons>
                 <ContactIcon
                   src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png "
@@ -119,4 +115,4 @@ const SideBar = () => {
   )
 }
 
-export default SideBar
+export default withRouter(SideBar)

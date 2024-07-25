@@ -96,28 +96,34 @@ class Login extends Component {
                       ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
                       : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
                   }
-                  alt="logo"
+                  alt="website logo"
                 />
                 <LoginForm darkTheme={darkTheme} onSubmit={this.submitForm}>
                   <InputContainer>
-                    <InputLabel darkTheme={darkTheme}>USERNAME</InputLabel>
+                    <InputLabel darkTheme={darkTheme} htmlFor="Username">
+                      USERNAME
+                    </InputLabel>
                     <InputField
                       type="text"
                       placeholder="Username"
                       darkTheme={darkTheme}
                       value={username}
                       onChange={this.updateUsername}
+                      id="Username"
                     />
                   </InputContainer>
 
                   <InputContainer>
-                    <InputLabel darkTheme={darkTheme}>PASSWORD</InputLabel>
+                    <InputLabel darkTheme={darkTheme} htmlFor="Password">
+                      PASSWORD
+                    </InputLabel>
                     <InputField
                       darkTheme={darkTheme}
                       type={showPassword ? 'text' : 'password'}
                       placeholder="Password"
                       value={password}
                       onChange={this.updatePassword}
+                      id="Password"
                     />
                   </InputContainer>
 

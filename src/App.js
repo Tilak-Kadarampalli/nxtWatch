@@ -7,6 +7,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import Home from './components/Home'
 import Trending from './components/Trending'
 import Gaming from './components/Gaming'
+import Header from './components/Header'
 import SavedVideos from './components/SavedVideos'
 import VideoDetails from './components/VideoDetails'
 

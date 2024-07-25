@@ -12,6 +12,7 @@ export const DetailsContainer = styled.div`
 export const VideoDetailsMain = styled.div`
   display: flex;
   flex-direction: column;
+  background-color: ${props => (props.darkTheme ? ' #0f0f0f  ' : ' #f9f9f9')};
 `
 
 export const VideoDetailsDiv = styled.div`
@@ -31,10 +32,10 @@ export const DetailsCont = styled.div`
   display: flex;
   width: 100%;
   padding: 20px;
-
+  background-color: inherit;
   flex-direction: column;
   align-items: center;
-  background-color: #f1f1f1;
+
   @media screen and ${device.sm} {
     width: 100vw;
   }
@@ -58,7 +59,7 @@ export const VideoInfo = styled.div`
   color: #475569;
 `
 export const ActionButton = styled.button`
-  color: #475569;
+  color: ${props => (props.active ? '#2563eb' : '#64748b')};
   border: 0px;
   background-color: transparent;
   font-size: 14px;

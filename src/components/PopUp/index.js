@@ -1,7 +1,7 @@
 import {Component} from 'react'
 import Popup from 'reactjs-popup'
 import Cookies from 'js-cookie'
-import {Redirect} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import {PopUpDiv, PopUpButton} from '../Header/styledComponents'
 import ThemeContext from '../../context/ThemeContext'
 
@@ -9,10 +9,10 @@ class PopUp extends Component {
   state = {loggedOut: false}
 
   render() {
-    const {close} = this.props
+    const {close, history} = this.props
     const {loggedOut} = this.state
     if (loggedOut) {
-      return <Redirect to="/login" />
+      history.replace('/login')
     }
     return (
       <ThemeContext.Consumer>
@@ -20,7 +20,7 @@ class PopUp extends Component {
           const {darkTheme} = value
           return (
             <PopUpDiv className="modal">
-              <div className="content">Are you sure you want to logout?</div>
+              <div className="content">Are you sure, you want to logout?</div>
               <div className="actions">
                 <PopUpButton
                   cancel
@@ -48,4 +48,4 @@ class PopUp extends Component {
     )
   }
 }
-export default PopUp
+export default withRouter(PopUp)

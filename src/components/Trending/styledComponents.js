@@ -5,15 +5,13 @@ const device = {
   lg: `(min-width: 577px)`,
 }
 
-export const TrendingCont = styled.div`
-  display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
-  height: 100vh;
-  @media screen and ${device.lg} {
-    width: 70vw;
-  }
+export const TrendingMain = styled.div`
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  background-color: ${props => (props.darkTheme ? '#181818 ' : ' #f9f9f9')};
 `
+
 export const TrendingDiv = styled.div`
   display: flex;
   width: 100vw;
@@ -21,12 +19,18 @@ export const TrendingDiv = styled.div`
     flex-direction: row;
   }
 `
-export const TrendingMain = styled.div`
-  padding: 0px;
-  margin: 0px;
+
+export const TrendingCont = styled.div`
   display: flex;
+  width: 70vw;
   flex-direction: column;
+
+  background-color: ${props => (props.darkTheme ? '#181818 ' : ' #f9f9f9')};
+  @media screen and ${device.sm} {
+    width: 100vw;
+  }
 `
+
 export const TrendingBanner = styled.div`
   display: flex;
   flex-direction: row;

@@ -100,7 +100,7 @@ class VideoDetails extends Component {
   }
 
   render() {
-    const {videoDetails, liked, unliked} = this.state
+    const {videoDetails, liked, unliked, saved} = this.state
     const {
       id,
       title,
@@ -122,7 +122,10 @@ class VideoDetails extends Component {
           }
 
           return (
-            <VideoDetailsMain>
+            <VideoDetailsMain
+              data-testid="videoItemDetails"
+              darkTheme={darkTheme}
+            >
               <Header />
               <VideoDetailsDiv>
                 <LargeSideBarDiv>
@@ -136,15 +139,18 @@ class VideoDetails extends Component {
                       {viewCount} . {publishedAt}
                     </p>
                     <div>
-                      <ActionButton onClick={this.onClickLike}>
+                      <ActionButton onClick={this.onClickLike} active={liked}>
                         <BiLike size={20} />
                         Like
                       </ActionButton>
-                      <ActionButton onClick={this.onClickDisike}>
+                      <ActionButton
+                        onClick={this.onClickDisike}
+                        active={unliked}
+                      >
                         <BiDislike size={20} />
                         Dislike
                       </ActionButton>
-                      <ActionButton onClick={onClickSave}>
+                      <ActionButton onClick={onClickSave} active={saved}>
                         <RiPlayListAddLine size={20} /> Save
                       </ActionButton>
                     </div>

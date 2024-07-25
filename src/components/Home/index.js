@@ -117,6 +117,7 @@ class Home extends Component {
                   ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
                   : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
               }
+              alt="failure view"
               width="324px"
             />
             <h1>Oops! Something Went Wrong</h1>
@@ -187,19 +188,19 @@ class Home extends Component {
         {value => {
           const {darkTheme} = value
           return (
-            <HomeMain>
+            <HomeMain data-testid="home" darkTheme={darkTheme}>
               <Header />
               <HomeDiv>
                 <LargeSideBarDiv>
                   <SideBar />
                 </LargeSideBarDiv>
-                <HomeCont>
+                <HomeCont darkTheme={darkTheme}>
                   {displayBanner && (
-                    <Banner>
+                    <Banner data-testid="banner">
                       <BannerText>
                         <img
                           src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                          alt="banner logo"
+                          alt="nxt watch logo"
                           height="36px"
                           width="128px"
                         />
@@ -207,7 +208,10 @@ class Home extends Component {
                         <GetItNow>GET IT NOW</GetItNow>
                       </BannerText>
 
-                      <CloseButton onClick={this.closeBanner}>
+                      <CloseButton
+                        onClick={this.closeBanner}
+                        data-testid="close"
+                      >
                         <IoMdClose />
                       </CloseButton>
                     </Banner>
@@ -221,7 +225,10 @@ class Home extends Component {
                         onChange={this.onChangeSearch}
                         value={searchQuery}
                       />
-                      <SearchButton onClick={this.searchVideos}>
+                      <SearchButton
+                        onClick={this.searchVideos}
+                        data-testid="searchButton"
+                      >
                         <FaSearch />
                       </SearchButton>
                     </SearchBox>
