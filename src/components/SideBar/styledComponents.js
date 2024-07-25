@@ -21,7 +21,8 @@ export const SideBarDiv = styled.div`
   width: inherit;
   background-color: ${props => (props.darkTheme ? '#000000' : ' #ffffff')};
   @media screen and ${device.lg} {
-    justify-content: flex-start;
+    height: 100%;
+    justify-content: space-between;
   }
 `
 export const SideBarLinks = styled.div`
@@ -75,4 +76,36 @@ export const NavLink = styled(Link)`
   @media screen and ${device.lg} {
     min-width: 30vw;
   }
+`
+export const ContactDiv = styled.div`
+  align-self: flex-start;
+  display: none;
+  margin: 20px;
+
+  @media screen and ${device.lg} {
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+  }
+`
+export const ContactHead = styled.h1`
+  font-family: 'Roboto';
+  font-size: 20px;
+  color: #000000;
+`
+export const ContactDesc = styled.p`
+  font-family: 'Roboto';
+  font-size: 16px;
+  font-weight: 500;
+  color: #000000;
+`
+export const ContactIcons = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+
+export const ContactIcon = styled.img`
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
 `

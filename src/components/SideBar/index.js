@@ -11,6 +11,11 @@ import {
   SideBarCentered,
   LinkText,
   NavLink,
+  ContactDiv,
+  ContactHead,
+  ContactDesc,
+  ContactIcons,
+  ContactIcon,
 } from './styledComponents'
 
 const SideBar = () => {
@@ -87,6 +92,26 @@ const SideBar = () => {
                 </NavLink>
               </SideBarCentered>
             </SideBarLinks>
+            <ContactDiv>
+              <ContactHead>CONTACT US</ContactHead>
+              <ContactIcons>
+                <ContactIcon
+                  src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png "
+                  alt="facebook logo"
+                />
+                <ContactIcon
+                  src="https://assets.ccbp.in/frontend/react-js/nxt-watch-twitter-logo-img.png"
+                  alt="twitter logo"
+                />
+                <ContactIcon
+                  src="https://assets.ccbp.in/frontend/react-js/nxt-watch-linked-in-logo-img.png"
+                  alt="linked in logo"
+                />
+              </ContactIcons>
+              <ContactDesc>
+                Enjoy! Now to see your channels and recommendations!
+              </ContactDesc>
+            </ContactDiv>
           </SideBarDiv>
         )
       }}
