@@ -28,6 +28,14 @@ class App extends Component {
     }))
   }
 
+  removeSavedVideo = videoDetails => {
+    this.setState(prevState => ({
+      savedVideos: [
+        ...prevState.savedVideos.filter(video => video.id !== videoDetails.id),
+      ],
+    }))
+  }
+
   render() {
     const {darkTheme, showHeader, savedVideos} = this.state
     return (
@@ -39,6 +47,7 @@ class App extends Component {
           toggleHeader: this.toggleHeader,
           savedVideos,
           addToSavedVideos: this.addToSavedVideos,
+          removeSavedVideo: this.removeSavedVideo,
         }}
       >
         <Switch>

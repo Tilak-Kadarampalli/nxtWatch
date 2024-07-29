@@ -29,9 +29,6 @@ const SideBar = props => {
           <SideBarDiv darkTheme={darkTheme}>
             <SideBarLinks>
               <SideBarCentered>
-                <LinkText darkTheme={darkTheme} to="/saved-videos">
-                  Saved Videos
-                </LinkText>
                 <NavLink darkTheme={darkTheme} active={match.path === '/'}>
                   <LinkDiv darkTheme={darkTheme}>
                     <AiFillHome

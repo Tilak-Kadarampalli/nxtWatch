@@ -226,8 +226,8 @@ class Home extends Component {
                         value={searchQuery}
                       />
                       <SearchButton
-                        onClick={this.searchVideos}
                         data-testid="searchButton"
+                        onClick={this.searchVideos}
                       >
                         <FaSearch />
                       </SearchButton>

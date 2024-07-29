@@ -76,7 +76,7 @@ export const NavLink = styled.div`
   }};
   text-decoration: none;
   @media screen and ${device.lg} {
-    min-width: 30vw;
+    min-width: 25vw;
   }
 `
 export const ContactDiv = styled.div`

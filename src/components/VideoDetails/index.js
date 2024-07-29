@@ -24,13 +24,13 @@ import {
   ChannelDescription,
 } from './styledComponents'
 import ThemeContext from '../../context/ThemeContext'
+import SavedVideos from '../SavedVideos'
 
 class VideoDetails extends Component {
   state = {
     videoDetails: {},
     liked: false,
     unliked: false,
-    saved: false,
   }
 
   componentDidMount() {
@@ -100,7 +100,7 @@ class VideoDetails extends Component {
   }
 
   render() {
-    const {videoDetails, liked, unliked, saved} = this.state
+    const {videoDetails, liked, unliked} = this.state
     const {
       id,
       title,
@@ -116,10 +116,22 @@ class VideoDetails extends Component {
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {darkTheme, addToSavedVideos} = value
+          const {
+            darkTheme,
+            addToSavedVideos,
+            removeSavedVideo,
+            savedVideos,
+          } = value
           const onClickSave = () => {
-            addToSavedVideos(videoDetails)
+            if (savedVideos.some(video => video.id === id) === false) {
+              addToSavedVideos(videoDetails)
+            } else {
+              removeSavedVideo(videoDetails)
+            }
+            this.setState(prevState => ({saved: !prevState.saved}))
           }
+
+          const checkSaved = () => savedVideos.some(video => video.id === id)
 
           return (
             <VideoDetailsMain
@@ -133,7 +145,7 @@ class VideoDetails extends Component {
                 </LargeSideBarDiv>
                 <DetailsCont>
                   <ReactPlayer url={videoUrl} />
-                  <VideoTitle>{title}</VideoTitle>
+                  <VideoTitle as="p">{title}</VideoTitle>
                   <VideoInfo>
                     <p>
                       {viewCount} . {publishedAt}
@@ -150,16 +162,20 @@ class VideoDetails extends Component {
                         <BiDislike size={20} />
                         Dislike
                       </ActionButton>
-                      <ActionButton onClick={onClickSave} active={saved}>
-                        <RiPlayListAddLine size={20} /> Save
+                      <ActionButton onClick={onClickSave} active={checkSaved()}>
+                        <RiPlayListAddLine size={20} />
+                        {checkSaved() ? 'Saved' : 'Save'}
                       </ActionButton>
                     </div>
                   </VideoInfo>
                   <hr color="#64748b" width="100%" />
                   <ChannelDetailsDiv>
-                    <ChannelProfileImg src={channelProfileImgUrl} />
+                    <ChannelProfileImg
+                      src={channelProfileImgUrl}
+                      alt="channel logo"
+                    />
                     <ChannelText>
-                      <ChannelName>{channelName}</ChannelName>
+                      <ChannelName as="p">{channelName}</ChannelName>
                       <ChannelSubscribers>
                         {channelSubscriberCount} Subscribers
                       </ChannelSubscribers>
