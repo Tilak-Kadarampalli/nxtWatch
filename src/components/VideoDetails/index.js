@@ -248,18 +248,9 @@ class VideoDetails extends Component {
           const {darkTheme} = value
 
           return (
-            <VideoDetailsMain
-              data-testid="videoItemDetails"
-              darkTheme={darkTheme}
-            >
-              <Header />
-              <VideoDetailsDiv>
-                <LargeSideBarDiv>
-                  <SideBar />
-                </LargeSideBarDiv>
-                <DetailsCont>{this.renderContent()}</DetailsCont>
-              </VideoDetailsDiv>
-            </VideoDetailsMain>
+            <DetailsCont data-testid="videoItemDetails">
+              {this.renderContent()}
+            </DetailsCont>
           )
         }}
       </ThemeContext.Consumer>

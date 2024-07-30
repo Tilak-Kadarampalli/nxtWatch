@@ -13,7 +13,7 @@ import {
   TrendingHead,
   LogoDiv,
 } from '../Trending/styledComponents'
-import {GamingList} from './styledComponents'
+import {GamingList, GamingCont} from './styledComponents'
 import {FailureContainer} from '../Home/styledComponents'
 
 const apiStateConstants = {
@@ -71,7 +71,7 @@ class Gaming extends Component {
           const {darkTheme} = value
 
           return (
-            <TrendingCont darkTheme={darkTheme}>
+            <GamingCont darkTheme={darkTheme}>
               <TrendingBanner>
                 <LogoDiv>
                   <FaFireAlt color="#ff0000" size="32px" />
@@ -83,7 +83,7 @@ class Gaming extends Component {
                   <GamingItem key={eachGame.id} details={eachGame} />
                 ))}
               </GamingList>
-            </TrendingCont>
+            </GamingCont>
           )
         }}
       </ThemeContext.Consumer>

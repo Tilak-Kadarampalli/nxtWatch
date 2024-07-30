@@ -14,14 +14,14 @@ export const GlobalStyling = styled.div`
 
 export const SideBarDiv = styled.div`
   display: flex;
-  max-height: 100vh;
+  height: 100vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: inherit;
   background-color: ${props => (props.darkTheme ? '#000000' : ' #ffffff')};
   @media screen and ${device.lg} {
-    height: 100%;
+    height: 100vh;
     justify-content: space-between;
   }
 `

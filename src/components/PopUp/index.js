@@ -20,7 +20,7 @@ class PopUp extends Component {
           const {darkTheme} = value
           return (
             <PopUpDiv className="modal">
-              <div className="content">Are you sure, you want to logout?</div>
+              <div className="content">Are you sure, you want to logout</div>
               <div className="actions">
                 <PopUpButton
                   cancel
@@ -35,6 +35,7 @@ class PopUp extends Component {
                 <PopUpButton
                   onClick={() => {
                     Cookies.remove('jwt_token')
+                    history.replace('/login')
                     this.setState({loggedOut: true})
                   }}
                 >

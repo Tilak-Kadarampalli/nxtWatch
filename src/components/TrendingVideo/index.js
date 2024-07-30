@@ -22,7 +22,7 @@ const TrendingVideo = props => {
     <TrendingVideoDiv to={`videos/${id}`}>
       <ThumbnailImg src={thumbnailUrl} alt="video thumbnail" />
       <TrendingDetails>
-        <VideoTitle>{title}</VideoTitle>
+        <VideoTitle as="p">{title}</VideoTitle>
         <VideoSubText>{channelName}</VideoSubText>
         <VideoSubText>
           {viewCount} . {publishedAt}

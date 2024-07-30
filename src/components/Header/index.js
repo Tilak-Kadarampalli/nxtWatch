@@ -23,8 +23,6 @@ import SideBar from '../SideBar'
 import PopUp from '../PopUp'
 
 class Header extends Component {
-  state = {displayHeader: true}
-
   render() {
     return (
       <ThemeContext.Consumer>
@@ -112,7 +110,7 @@ class Header extends Component {
                 >
                   <IoMdClose color={darkTheme ? 'white' : 'black'} size={32} />{' '}
                 </BurgerMenu>
-                <SideBar />
+                {showHeader === false && <SideBar />}
               </HeaderDiv>
             </div>
           )
