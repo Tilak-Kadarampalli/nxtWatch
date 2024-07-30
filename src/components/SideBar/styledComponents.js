@@ -14,7 +14,7 @@ export const GlobalStyling = styled.div`
 
 export const SideBarDiv = styled.div`
   display: flex;
-  height: 100vh;
+  max-height: 100vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;

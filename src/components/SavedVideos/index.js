@@ -42,36 +42,27 @@ class SavedVideos extends Component {
           const {darkTheme, savedVideos} = value
 
           return (
-            <TrendingMain data-testid="savedVideos" darkTheme={darkTheme}>
-              <Header />
-              <TrendingDiv>
-                <LargeSideBarDiv>
-                  <SideBar />
-                </LargeSideBarDiv>
-                <TrendingCont darkTheme={darkTheme}>
-                  {savedVideos.length === 0 ? (
-                    this.noVideosView()
-                  ) : (
-                    <>
-                      <TrendingBanner>
-                        <LogoDiv>
-                          <FaFireAlt color="#ff0000" size="32px" />
-                        </LogoDiv>
-                        <TrendingHead>Saved Videos</TrendingHead>
-                      </TrendingBanner>
-                      <ul>
-                        {savedVideos.map(eachVideo => (
-                          <TrendingVideo
-                            key={eachVideo.id}
-                            details={eachVideo}
-                          />
-                        ))}
-                      </ul>
-                    </>
-                  )}
-                </TrendingCont>
-              </TrendingDiv>
-            </TrendingMain>
+            <div data-testid="savedVideos">
+              <TrendingCont darkTheme={darkTheme}>
+                {savedVideos.length === 0 ? (
+                  this.noVideosView()
+                ) : (
+                  <>
+                    <TrendingBanner>
+                      <LogoDiv>
+                        <FaFireAlt color="#ff0000" size="32px" />
+                      </LogoDiv>
+                      <TrendingHead>Saved Videos</TrendingHead>
+                    </TrendingBanner>
+                    <ul>
+                      {savedVideos.map(eachVideo => (
+                        <TrendingVideo key={eachVideo.id} details={eachVideo} />
+                      ))}
+                    </ul>
+                  </>
+                )}
+              </TrendingCont>
+            </div>
           )
         }}
       </ThemeContext.Consumer>

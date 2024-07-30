@@ -8,8 +8,15 @@ import Home from './components/Home'
 import Trending from './components/Trending'
 import Gaming from './components/Gaming'
 import Header from './components/Header'
+import SideBar from './components/SideBar'
 import SavedVideos from './components/SavedVideos'
 import VideoDetails from './components/VideoDetails'
+import NotFound from './components/NotFound'
+import {
+  LargeSideBarDiv,
+  GlobalStyling,
+  HomeDiv,
+} from './components/Home/styledComponents'
 
 class App extends Component {
   state = {darkTheme: false, showHeader: true, savedVideos: []}
@@ -52,11 +59,30 @@ class App extends Component {
       >
         <Switch>
           <Route exact path="/login" component={Login} />
-          <ProtectedRoute exact path="/" component={Home} />
-          <ProtectedRoute exact path="/trending" component={Trending} />
-          <ProtectedRoute exact path="/gaming" component={Gaming} />
-          <ProtectedRoute exact path="/videos/:id" component={VideoDetails} />
-          <ProtectedRoute exact path="/saved-videos" component={SavedVideos} />
+          <GlobalStyling>
+            <Header />
+            <HomeDiv>
+              <LargeSideBarDiv>
+                <SideBar />
+              </LargeSideBarDiv>
+              <Switch>
+                <ProtectedRoute exact path="/" component={Home} />
+                <ProtectedRoute exact path="/trending" component={Trending} />
+                <ProtectedRoute exact path="/gaming" component={Gaming} />
+                <ProtectedRoute
+                  exact
+                  path="/videos/:id"
+                  component={VideoDetails}
+                />
+                <ProtectedRoute
+                  exact
+                  path="/saved-videos"
+                  component={SavedVideos}
+                />
+                <Route component={NotFound} />
+              </Switch>
+            </HomeDiv>
+          </GlobalStyling>
         </Switch>
       </ThemeContext.Provider>
     )

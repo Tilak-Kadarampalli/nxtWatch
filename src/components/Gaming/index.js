@@ -2,8 +2,6 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import {FaFireAlt} from 'react-icons/fa'
 import Loader from 'react-loader-spinner'
-import Header from '../Header'
-import SideBar from '../SideBar'
 import GamingItem from '../GamingItem'
 import ThemeContext from '../../context/ThemeContext'
 import {LargeSideBarDiv} from '../VideoDetails/styledComponents'
@@ -151,17 +149,7 @@ class Gaming extends Component {
         {value => {
           const {darkTheme} = value
 
-          return (
-            <TrendingMain data-testid="gaming" darkTheme={darkTheme}>
-              <Header />
-              <TrendingDiv>
-                <LargeSideBarDiv>
-                  <SideBar />
-                </LargeSideBarDiv>
-                {this.renderContent()}
-              </TrendingDiv>
-            </TrendingMain>
-          )
+          return <div data-testid="gaming">{this.renderContent()}</div>
         }}
       </ThemeContext.Consumer>
     )

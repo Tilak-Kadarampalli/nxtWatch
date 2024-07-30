@@ -3,14 +3,9 @@ import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import {IoMdClose} from 'react-icons/io'
 import {FaSearch} from 'react-icons/fa'
-import Header from '../Header'
-import SideBar from '../SideBar'
 import VideoItem from '../VideoItem'
 
 import {
-  LargeSideBarDiv,
-  HomeMain,
-  HomeDiv,
   HomeCont,
   Banner,
   BannerText,
@@ -188,55 +183,44 @@ class Home extends Component {
         {value => {
           const {darkTheme} = value
           return (
-            <HomeMain data-testid="home" darkTheme={darkTheme}>
-              <Header />
-              <HomeDiv>
-                <LargeSideBarDiv>
-                  <SideBar />
-                </LargeSideBarDiv>
-                <HomeCont darkTheme={darkTheme}>
-                  {displayBanner && (
-                    <Banner data-testid="banner">
-                      <BannerText>
-                        <img
-                          src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                          alt="nxt watch logo"
-                          height="36px"
-                          width="128px"
-                        />
-                        <p>Buy Nxt Watch Premium prepaid plans with UPI</p>
-                        <GetItNow>GET IT NOW</GetItNow>
-                      </BannerText>
+            <HomeCont darkTheme={darkTheme} data-testid="home">
+              {displayBanner && (
+                <Banner data-testid="banner">
+                  <BannerText>
+                    <img
+                      src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                      alt="nxt watch logo"
+                      height="36px"
+                      width="128px"
+                    />
+                    <p>Buy Nxt Watch Premium prepaid plans with UPI</p>
+                    <GetItNow>GET IT NOW</GetItNow>
+                  </BannerText>
 
-                      <CloseButton
-                        onClick={this.closeBanner}
-                        data-testid="close"
-                      >
-                        <IoMdClose />
-                      </CloseButton>
-                    </Banner>
-                  )}
+                  <CloseButton onClick={this.closeBanner} data-testid="close">
+                    <IoMdClose />
+                  </CloseButton>
+                </Banner>
+              )}
 
-                  <HomeContent>
-                    <SearchBox>
-                      <SearchField
-                        type="search"
-                        placeholder="Search"
-                        onChange={this.onChangeSearch}
-                        value={searchQuery}
-                      />
-                      <SearchButton
-                        data-testid="searchButton"
-                        onClick={this.searchVideos}
-                      >
-                        <FaSearch />
-                      </SearchButton>
-                    </SearchBox>
-                    {this.renderVideosContainer()}
-                  </HomeContent>
-                </HomeCont>
-              </HomeDiv>
-            </HomeMain>
+              <HomeContent>
+                <SearchBox>
+                  <SearchField
+                    type="search"
+                    placeholder="Search"
+                    onChange={this.onChangeSearch}
+                    value={searchQuery}
+                  />
+                  <SearchButton
+                    data-testid="searchButton"
+                    onClick={this.searchVideos}
+                  >
+                    <FaSearch />
+                  </SearchButton>
+                </SearchBox>
+                {this.renderVideosContainer()}
+              </HomeContent>
+            </HomeCont>
           )
         }}
       </ThemeContext.Consumer>

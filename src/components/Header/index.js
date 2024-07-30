@@ -11,8 +11,10 @@ import {
   HeaderLogo,
   HeaderMenu,
   ThemeSwitchButton,
+  ProfileSwitchButton,
   LogOutButton,
   BurgerMenu,
+  HamburgerMenuButton,
 } from '../../styledComponents'
 import {PopUpDiv, PopUpButton} from './styledComponents'
 
@@ -52,34 +54,9 @@ class Header extends Component {
                     data-testid="theme"
                   >
                     {darkTheme ? <FiSun /> : <FaMoon />}
-                  </ThemeSwitchButton>{' '}
-                  <ThemeSwitchButton
-                    darkTheme={darkTheme}
-                    type="button"
-                    onClick={toggleHeader}
-                  >
-                    <GiHamburgerMenu />{' '}
                   </ThemeSwitchButton>
-                  <ThemeSwitchButton
-                    darkTheme={darkTheme}
-                    type="button"
-                    onClick={toggleHeader}
-                  >
-                    <Popup trigger={<FiLogOut />} modal>
-                      {close => <PopUp close={close} />}
-                    </Popup>
-                  </ThemeSwitchButton>
-                </BurgerMenu>
 
-                <HeaderMenu>
-                  <ThemeSwitchButton
-                    darkTheme={darkTheme}
-                    type="button"
-                    onClick={changeTheme}
-                  >
-                    {darkTheme ? <FiSun /> : <FaMoon />}
-                  </ThemeSwitchButton>
-                  <ThemeSwitchButton>
+                  <ProfileSwitchButton>
                     {' '}
                     <img
                       src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png "
@@ -87,20 +64,40 @@ class Header extends Component {
                       width="32px"
                       height="32px"
                     />
-                  </ThemeSwitchButton>
+                  </ProfileSwitchButton>
 
-                  <Popup
-                    trigger={
-                      <LogOutButton darkTheme={darkTheme} className="button">
-                        {' '}
-                        Logout{' '}
-                      </LogOutButton>
-                    }
-                    modal
+                  <HamburgerMenuButton
+                    darkTheme={darkTheme}
+                    type="button"
+                    onClick={toggleHeader}
                   >
-                    {close => <PopUp close={close} />}
-                  </Popup>
-                </HeaderMenu>
+                    <GiHamburgerMenu />{' '}
+                  </HamburgerMenuButton>
+
+                  <HamburgerMenuButton
+                    darkTheme={darkTheme}
+                    type="button"
+                    onClick={toggleHeader}
+                  >
+                    <Popup trigger={<FiLogOut />} modal>
+                      {close => <PopUp close={close} />}
+                    </Popup>
+                  </HamburgerMenuButton>
+
+                  <ProfileSwitchButton>
+                    <Popup
+                      trigger={
+                        <LogOutButton darkTheme={darkTheme} className="button">
+                          {' '}
+                          Logout{' '}
+                        </LogOutButton>
+                      }
+                      modal
+                    >
+                      {close => <PopUp close={close} />}
+                    </Popup>
+                  </ProfileSwitchButton>
+                </BurgerMenu>
               </HeaderDiv>
               <HeaderDiv
                 darkTheme={darkTheme}

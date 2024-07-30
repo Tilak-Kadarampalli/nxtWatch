@@ -1,5 +1,4 @@
 import {Link} from 'react-router-dom'
-import {format, parse, formatDistanceToNow} from 'date-fns'
 import ThemeContext from '../../context/ThemeContext'
 
 import {
@@ -25,12 +24,6 @@ const VideoItem = props => {
     channelProfileImgUrl,
   } = details
 
-  const convertDateToDuration = date => {
-    const parsedDate = parse(date, 'MMM d, yyyy', new Date())
-    const duration = formatDistanceToNow(parsedDate, {addSuffix: true})
-    return duration
-  }
-
   return (
     <ThemeContext.Consumer>
       {value => {
@@ -46,7 +39,7 @@ const VideoItem = props => {
                   <VideoTitle as="p">{title}</VideoTitle>
                   <VideoCount>{channelName}</VideoCount>
                   <VideoCount>
-                    {viewCount} . {convertDateToDuration(publishedAt)}
+                    {viewCount} . {publishedAt}
                   </VideoCount>
                 </VideoTextDiv>
               </VideoInfo>

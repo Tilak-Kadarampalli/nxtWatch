@@ -5,7 +5,7 @@ const device = {
   lg: `(min-width: 577px)`,
 }
 
-export const HomeMain = styled.div`
+export const GlobalStyling = styled.div`
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;

@@ -112,16 +112,13 @@ export const HeaderMenu = styled.div`
   }
 `
 export const BurgerMenu = styled.div`
-  display: none;
-  @media screen and ${device.sm} {
-    background-color: transparent;
-    border: none;
-    display: ${props => (props.showHeader ? 'flex' : 'none')};
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    color: ${props => (props.darkTheme ? '#ffffff' : ' #000000')};
-  }
+  background-color: transparent;
+  border: none;
+  display: ${props => (props.showHeader ? 'flex' : 'none')};
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: ${props => (props.darkTheme ? '#ffffff' : ' #000000')};
 `
 
 export const ThemeSwitchButton = styled.button`
@@ -134,6 +131,29 @@ export const ThemeSwitchButton = styled.button`
   color: ${props => (props.darkTheme ? '#ffffff' : ' #000000')};
   border: none;
 `
+
+export const ProfileSwitchButton = styled.div`
+  display: block;
+  margin-left: 16px;
+  @media screen and ${device.sm} {
+    display: none;
+  }
+`
+
+export const HamburgerMenuButton = styled.button`
+  display: none;
+  @media screen and ${device.sm} {
+    display: block;
+    background-color: transparent;
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+    margin-left: 20px;
+    color: ${props => (props.darkTheme ? '#ffffff' : ' #000000')};
+    border: none;
+  }
+`
+
 export const LogOutButton = styled.button`
   background-color: transparent;
   width: 96px;

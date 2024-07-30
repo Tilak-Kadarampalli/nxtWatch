@@ -2,7 +2,6 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import ReactPlayer from 'react-player'
-import {formatDistanceToNow, parse} from 'date-fns'
 import {BiLike, BiDislike} from 'react-icons/bi'
 import {RiPlayListAddLine} from 'react-icons/ri'
 import Header from '../Header'
@@ -96,10 +95,7 @@ class VideoDetails extends Component {
         channelProfileImgUrl: rawData.channel.profile_image_url,
         channelSubscriberCount: rawData.channel.subscriber_count,
         viewCount: rawData.view_count,
-        publishedAt: formatDistanceToNow(
-          parse(rawData.published_at, 'MMM d, yyyy', new Date()),
-          {addSuffix: true},
-        ),
+        publishedAt: rawData.published_at,
         description: rawData.description,
       }
 

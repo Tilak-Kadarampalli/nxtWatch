@@ -2,12 +2,8 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import {FaFireAlt} from 'react-icons/fa'
-import {formatDistanceToNow, parse} from 'date-fns'
-import Header from '../Header'
-import SideBar from '../SideBar'
 import TrendingVideo from '../TrendingVideo'
 import ThemeContext from '../../context/ThemeContext'
-import {LargeSideBarDiv} from '../VideoDetails/styledComponents'
 import {
   TrendingMain,
   TrendingDiv,
@@ -55,10 +51,7 @@ class Trending extends Component {
         channelProfileImgUrl: eachVideo.channel.profile_image_url,
         thumbnailUrl: eachVideo.thumbnail_url,
         viewCount: eachVideo.view_count,
-        publishedAt: formatDistanceToNow(
-          parse(eachVideo.published_at, 'MMM d, yyyy', new Date()),
-          {addSuffix: true},
-        ),
+        publishedAt: eachVideo.published_at,
       }))
 
       this.setState({
@@ -157,17 +150,7 @@ class Trending extends Component {
         {value => {
           const {darkTheme} = value
 
-          return (
-            <TrendingMain data-testid="trending" darkTheme={darkTheme}>
-              <Header />
-              <TrendingDiv>
-                <LargeSideBarDiv>
-                  <SideBar />
-                </LargeSideBarDiv>
-                {this.renderTrending()}
-              </TrendingDiv>
-            </TrendingMain>
-          )
+          return <div data-testid="trending">{this.renderTrending()}</div>
         }}
       </ThemeContext.Consumer>
     )
